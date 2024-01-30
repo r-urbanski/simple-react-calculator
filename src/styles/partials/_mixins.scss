@@ -1,0 +1,17 @@
+// media query max-width mixin
+$breakpoints-max: (
+    sm: 575.98px,
+    md: 767.98px,
+    lg: 991.98px,
+    xl: 1199.98px,
+    xxl: 1399.98px,
+);
+@mixin media($breakpoint) {
+    @each $key, $size in $breakpoints-max {
+        @if $breakpoint == $key {
+            @media screen and (max-width: $size) {
+                @content;
+            }
+        }
+    }
+}

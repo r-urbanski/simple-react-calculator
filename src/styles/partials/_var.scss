@@ -1,0 +1,24 @@
+:root {
+    --primary: rgb(0, 136, 221);
+}
+
+[data-theme='dark'] {
+    --bg: rgb(0, 0, 0);
+    --calc: rgb(23, 24, 26);
+    --numbers: rgb(36, 36, 39);
+    --color: rgb(255, 255, 255);
+    --primary: rgb(0, 136, 221);
+    --temp-result: rgba(255, 255, 255, 0.4);
+    --func: rgb(49, 50, 55);
+    --click: none;
+}
+
+[data-theme='light'] {
+    --bg: rgb(255, 255, 255);
+    --calc: rgb(242, 242, 242);
+    --numbers: rgb(255, 255, 255);
+    --color: rgb(0, 0, 0);
+    --temp-result: rgba(0, 0, 0, 0.4);
+    --func: rgb(205, 236, 255);
+    --click: inset 10rem 10rem rgba(0, 0, 0, 0.3);
+}

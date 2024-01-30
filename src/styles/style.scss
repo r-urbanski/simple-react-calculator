@@ -1,0 +1,175 @@
+@import './partials/var';
+@import './partials/mixins';
+@import './partials/reset';
+
+.calc-container {
+    background-color: var(--calc);
+    height: 90%;
+    width: 90%;
+    max-height: 1000px;
+    max-width: 525px;
+    border-radius: 30px;
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+
+    .display {
+        height: 35%;
+        color: var(--color);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 0.25rem;
+        transition: none;
+
+        aside {
+            p {
+                width: 100%;
+                font-size: 2.75rem;
+                text-align: right;
+            }
+        }
+
+        aside.operation {
+            height: 70%;
+            width: 100%;
+            overflow: auto;
+
+            p {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-end;
+                transition: width 2s ease-in-out;
+                width: auto;
+
+                span {
+                    max-width: 100%;
+                    word-wrap: break-word;
+                }
+
+                i {
+                    font-size: 1.25rem;
+                    margin-inline: 4px;
+                    color: var(--primary);
+                }
+            }
+        }
+
+        aside.temp-result {
+            height: 30%;
+            overflow: auto;
+            color: var(--temp-result);
+            p {
+                font-size: 2rem;
+                transition: color 0.3s ease-in-out;
+            }
+        }
+    }
+
+    .buttons {
+        height: 65%;
+
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        min-width: 100%;
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color);
+            position: relative;
+            overflow: hidden;
+            font-size: 2rem;
+            border: none;
+            outline: none;
+            background-color: var(--numbers);
+            border-radius: 20px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                background-color: rgba(255, 255, 255, 0.3);
+                opacity: 0;
+                box-shadow: var(--click);
+                transition: opacity 0.2s ease-in-out;
+            }
+
+            &.animate::after {
+                animation: fade 0.2s ease-in-out;
+            }
+
+            @keyframes fade {
+                0% {
+                    opacity: 0;
+                }
+                25% {
+                    opacity: 50%;
+                }
+                50% {
+                    opacity: 100%;
+                }
+                75% {
+                    opacity: 50%;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            &.zero {
+                grid-column: span 2;
+            }
+
+            &.functional {
+                color: var(--primary);
+                &.clear {
+                    color: rgb(172, 50, 6);
+                }
+
+                &.normal {
+                    background-color: var(--numbers);
+                }
+
+                &.full {
+                    background-color: var(--primary);
+                    color: white;
+                }
+                background-color: var(--func);
+            }
+        }
+    }
+
+    @include media(md) {
+        padding: 20px;
+        gap: 2rem;
+
+        .display {
+            aside {
+                p {
+                    font-size: 2.2rem;
+                }
+            }
+        }
+
+        .buttons {
+            gap: 0.75rem;
+            button {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
